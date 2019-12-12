@@ -301,11 +301,6 @@ def I_cth(cth_map, xyz, d_closeenough):
     deltas = cth_xyzs - xyz
     dists_to_point = np.einsum('ij,ij->i', deltas, deltas)
     idx = dists_to_point.argmin()
-    """
-    print(cth_map[idx])
-    print(xyz)
-    sys.exit(0)
-    """
     # Only return intensity of nearest point of cth map if xyz is not too far
     # away:
     if np.sqrt(dists_to_point[idx]) < d_closeenough:

@@ -3,9 +3,6 @@ import sys
 from temperature_map_plot import plot_xyT
 from utilities import plot_name_extension
 
-# TODO: Unless difference between to images is very small R0~10^-5 the results
-# for images are vastly different. Why so sensitive?
-
 # Analyze image = table of x, y, T on 
 # - center position, 
 # - diameter, 
@@ -21,19 +18,6 @@ def image_analysis(l, R0, a, csv_path, x_c=0., y_c=0., vary_small=False):
 
     # Load image csv:
     im = np.genfromtxt(csv_path, delimiter=",")
-
-    """
-    # TODO(mrumm): how do images differ:
-    im_orig = np.genfromtxt( \
-            "../digitize_eht/EHT_xyT_interpolated_centered.csv", delimiter=",")
-    print(len(im_orig))
-    print(len(im))
-    for l, l_orig in zip(im, im_orig):
-        diff = l - l_orig
-        if np.any(abs(diff) > 0.01):
-            print(diff)
-    sys.exit(0)
-    """
 
     # Only take datapoints up to 60% of peak brightness (EHT uses only 95% of
     # peak brightness which we can't accomplish here because temperature
@@ -171,15 +155,6 @@ def rpeak_width(im, x_c, y_c, I_floor, calc_width="with_width"):
         # Keep only rpks(/FWHMs) that are within 5 and 50 muas, as in paper IV:
         if rpk > 5. and rpk < 50.:
             rpks.append(rpk)
-
-    """
-    # TODO(mrumm): Plot rpks:
-    if calc_width == "with_width":
-        #print(rI[:,1])
-        #print(np.around(rI[:,1], decimals=2))
-        #print(idx, rpk)
-        print(rpks)
-    """
 
     # Find mean and std of rpks and FWHMs:
     rpkm, rpkstd = mean_std(rpks)

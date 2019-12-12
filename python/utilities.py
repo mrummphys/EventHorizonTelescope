@@ -73,7 +73,6 @@ def check_exclusion(n, orig, modified):
     names = ["diam", "width", "oa", "A"]
     res = {'circ_val': circ, 'circ_val_mod': circ_re, 'fc_val': fc, \
             'fc_val_mod': fc_re}
-    # TODO(mrumm): What's really the right criterion for exclusion here?
     if circ_re > n*circ:
         res['circ'] = "Fail"
     else:

@@ -34,31 +34,14 @@ def kerr_reflected_intensities(l, R0, diam, x_c, y_c, a, Theta_obs, pix_size):
 
     # Define surface where light rays get reflected:
     r_horizon = M + math.sqrt(M**2 - a**2)
-    r_reflect = 1.2*r_horizon #TODO: find better definition.
+    r_reflect = 1.2*r_horizon
 
     # Define radius where the cth map is created:
     r_photonring, r_BL_photonring = kerr_photon_ring_radius(M, a)
     r_cth = r_BL_photonring
-    #r_cth = 1.5*r_horizon
-    #r_cth = 1.0*r_photonring
-    #r_cth = 4*r_photonring
-
-    """
-    # Print a few important length scales: 
-    print("\nBlack hole mass: ", M)
-    print("Horizon: ", r_horizon)
-    print("Reflection surface: ", r_reflect)
-    print("Close to horizon map: ", r_cth)
-    print("Photon ring Schwarzschild (3M): ", 3.*M)
-    print("Photon ring Kerr: ", r_photonring)
-    sys.exit(0)
-    """
 
     # Define how close points have to be to points of cth map to apply cth map:
-    #d_closeenough = 0.5*r_cth #TODO: Check dependence on this quantity.
     d_closeenough = 1.5*pix_size #Resolution of EHT choice.
-    #d_closeenough = 7.*pix_size #Used for first draft of Templeton grant appl.
-    #d_closeenough = 100.*pix_size #Fills the full disk.
 
     # Check if csv file with close to horizon (cth) map exists:
     cth_map_exists = False

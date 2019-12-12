@@ -9,17 +9,12 @@ import sys
 
 # Multipole moments:
 l_set = [0, 1, 2]
+
 # Reflection coefficients:
 R0_set = [0.001, 0.005, 0.01, 0.03, 0.07, 0.1, 0.2, 0.4, 1.0]
-#R0_set = [0.001, 0.005, 0.01, 0.05, 0.1, 0.2, 0.4, 0.6, 0.8, 1.0]
+
 # BH spins in units of M in (-1, 1):
-#a_set = [-0.94, 0.01, 0.94]
 a_set = [-0.94, -0.5, 0.01, 0.5, 0.94]
-"""
-l_set = [0]
-R0_set = [0.4]
-a_set = [0.94]
-"""
 
 # Pixel size in muas:
 pix_size = 1.
@@ -44,19 +39,6 @@ x_c, y_c, diam, diam_std, circ, width, width_std, fc, oa, oa_std, A, A_std, \
         image_path_pure_centered = image_analysis(0, 0, 0, image_path_pure)
 orig_prop = [diam, diam_std, circ, width, width_std, fc, oa, oa_std, A, A_std]
 
-"""
-print("\n ORIGINAL EHT IMAGE:")
-print_image_probs(x_c, y_c, diam, diam_std, width, width_std, fc, \
-        oa, oa_std, A, A_std)
-x_c, y_c, diam, diam_std, circ, width, width_std, fc, oa, oa_std, A, A_std, \
-        image_path_pure_centered2 = image_analysis(0, 0, 0, \
-        image_path_pure_centered, 0.0001, 0.0001, True)
-print("\n ORIGINAL EHT IMAGE CENTERED:")
-print_image_probs(x_c, y_c, diam, diam_std, width, width_std, fc, \
-        oa, oa_std, A, A_std)
-sys.exit(0)
-"""
-
 # Scan through all multipoles, reflection coefficients and BH spins:
 exclusion_results = []
 for l in l_set:
@@ -70,9 +52,6 @@ for l in l_set:
             # Add reflected image to centered EHT image:
             image_path_re = xyI_add_reflected_to_eht(image_path_pure_centered, \
                     im_refl)
-            """
-            image_path_re = 'reflected_intensities/xyT_added.csv'
-            """
 
             # Find properties of modified(=including reflection) image using the
             # 'vary_small' option for image_analysis:
@@ -80,12 +59,6 @@ for l in l_set:
                     width_re_std, fc_re, oa_re, oa_re_std, A_re, A_re_std, \
                     image_path_re = image_analysis(l, R0, a, image_path_re, \
                     0.000001, 0.000001, True)
-            """
-            x_c_re, y_c_re, diam_re, diam_re_std, circ_re, width_re, \
-                    width_re_std, fc_re, oa_re, oa_re_std, A_re, A_re_std, \
-                    image_path_re = image_analysis(l, R0, a, image_path_re, \
-                    0., 0., True)
-            """
             re_prop = diam_re, diam_re_std, circ_re, width_re, width_re_std, \
                     fc_re, oa_re, oa_re_std, A_re, A_re_std
 

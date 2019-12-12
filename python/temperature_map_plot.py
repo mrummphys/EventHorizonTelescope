@@ -21,7 +21,6 @@ def plot_xyT(xyT, save_path, r_circ=0., std_circ=0., x_c=0., y_c=0.):
         plt.plot(xs_circ_p, ys_circ_p, '--', color="black")
         plt.plot(xs_circ_m, ys_circ_m, '--', color="black")
     plt.savefig(save_path, bbox_inches='tight')
-    #plt.show()
     plt.close()
 
 # Circle plot for horizon:
