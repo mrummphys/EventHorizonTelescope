@@ -1,7 +1,7 @@
 # Constraining Fundamental Physics with the Event Horizon Telescope
 
 We constrain extensions of general relativity that can be described by a
-reflection coefficient as described in INSERT LINK.
+reflection coefficient as described in https://arxiv.org/abs/2001.00041.
 
 ## Requirements
 
